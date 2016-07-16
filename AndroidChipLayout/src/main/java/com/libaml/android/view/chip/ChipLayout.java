@@ -8,6 +8,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextWatcher;
@@ -62,7 +63,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
 
         TypedArray a_ = context.getTheme().obtainStyledAttributes(attrs, R.styleable.chip_layout, defStyle, 0);
 
-        textColor = a_.getColor(R.styleable.chip_layout_textColor_, Color.parseColor("#FFFFFF"));
+        textColor = a_.getColor(R.styleable.chip_layout_textColor_, Color.parseColor("#000000"));
         chipColor = a_.getColor(R.styleable.chip_layout_chipColor_, Color.parseColor("#00FFFFFF"));
         chipDrawable = a_.getDrawable(R.styleable.chip_layout_chipDrawable_);
         deleteIcon = a_.getDrawable(R.styleable.chip_layout_deleteIcon_);
@@ -76,6 +77,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         if(deleteIcon != null) {
             deleteIcon_ = ((BitmapDrawable) deleteIcon).getBitmap();
         }
+
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.chipLayout, defStyle, 0);
 
@@ -488,13 +490,29 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     {
 
         final LinearLayout layout = createLinearLayout(context);
-
         final AutoCompleteTextView autoCompleteTextView = createAutoCompleteTextView(context);
+        final ImageButton imageButton = createImageButton(context);
+
+
+        if(labelPosition == 0){
+            layout.addView(autoCompleteTextView);
+            layout.addView(imageButton);
+        }else{
+            layout.addView(imageButton);
+            layout.addView(autoCompleteTextView);
+        }
+
+
         if(textSize > 0){
             autoCompleteTextView.setTextSize(textSize);
         }
 
-        TextWatcher textWatcher = new ChipTextWatcher(layout, context, this, textColor, chipColor, chipDrawable.getConstantState().newDrawable(),
+        Drawable newDrawable = null;
+        if(chipDrawable != null){
+            newDrawable = chipDrawable.getConstantState().newDrawable();
+        }
+
+        TextWatcher textWatcher = new ChipTextWatcher(layout, context, this, textColor, chipColor, newDrawable,
                 showDeleteButton, labelPosition, listTextWatcher, setText);
         autoCompleteTextView.addTextChangedListener(textWatcher);
         for (TextWatcher tw: listTextWatcher){
@@ -508,7 +526,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         autoCompleteTextView.requestFocus();
         autoCompleteTextView.setOnEditorActionListener(new ChipEditorActionListener(autoCompleteTextView));
         autoCompleteTextView.setAdapter(adapter);
-        if(this.getWidth() < 1){
+        if(chipLayout.getWidth() < 1){
             ViewTreeObserver vto = this.getViewTreeObserver();
             vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
@@ -518,11 +536,19 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
                     } else {
                         chipLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
-                    autoCompleteTextView.setDropDownWidth(chipLayout.getWidth());
+                    if(chipLayout.getWidth() < 300){
+                        autoCompleteTextView.setDropDownWidth(300);
+                    }else{
+                        autoCompleteTextView.setDropDownWidth(chipLayout.getWidth());
+                    }
                 }
             });
         }else{
-            autoCompleteTextView.setDropDownWidth(this.getWidth());
+            if(chipLayout.getWidth() < 300){
+                autoCompleteTextView.setDropDownWidth(300);
+            }else{
+                autoCompleteTextView.setDropDownWidth(chipLayout.getWidth());
+            }
         }
         autoCompleteTextView.setDropDownVerticalOffset(3);
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -534,16 +560,6 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
                 }
             }
         });
-
-        final ImageButton imageButton = createImageButton(context);
-
-        if(labelPosition == 0){
-            layout.addView(autoCompleteTextView);
-            layout.addView(imageButton);
-        }else{
-            layout.addView(imageButton);
-            layout.addView(autoCompleteTextView);
-        }
 
 
         if(val != null){
