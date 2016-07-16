@@ -5,9 +5,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-/**
- * Created by amal on 7/7/16.
- */
+
 public class ChipEditorActionListener implements EditText.OnEditorActionListener {
 
     private EditText editText;

@@ -1,9 +1,6 @@
+
+
 package com.libaml.android.view.chip;
-
-/**
- * Created by Amaldev on 02-03-2016.
- */
-
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -100,7 +97,10 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
 
     }
 
-
+    /**
+     * Ask all children to measure themselves and compute the measurement of this
+     * layout based on the children.
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -195,6 +195,9 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     }
 
 
+    /**
+     * Position all children within this layout.
+     */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
 

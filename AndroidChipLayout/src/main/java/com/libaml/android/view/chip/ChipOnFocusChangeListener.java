@@ -9,9 +9,7 @@ import android.widget.EditText;
 
 import java.lang.reflect.Method;
 
-/**
- * Created by amal on 11/7/16.
- */
+
 public class ChipOnFocusChangeListener implements View.OnFocusChangeListener {
 
     private ChipLayout chipLayout;

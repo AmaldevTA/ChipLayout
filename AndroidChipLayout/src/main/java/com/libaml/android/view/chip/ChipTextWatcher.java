@@ -23,9 +23,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by amal on 4/7/16.
- */
+
 public class ChipTextWatcher implements TextWatcher {
 
     private ViewGroup chip;
