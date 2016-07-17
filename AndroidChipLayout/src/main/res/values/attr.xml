@@ -11,7 +11,15 @@
     <declare-styleable name="chip_layout">
         <attr name="textSize_" format="dimension"/>
         <attr name="chipPadding_" format="dimension"/>
+        <attr name="chipPaddingLeft_" format="dimension"/>
+        <attr name="chipPaddingRight_" format="dimension"/>
+        <attr name="chipPaddingTop_" format="dimension"/>
+        <attr name="chipPaddingBottom_" format="dimension"/>
         <attr name="chipTextPadding_" format="dimension"/>
+        <attr name="chipTextPaddingLeft_" format="dimension"/>
+        <attr name="chipTextPaddingRight_" format="dimension"/>
+        <attr name="chipTextPaddingTop_" format="dimension"/>
+        <attr name="chipTextPaddingBottom_" format="dimension"/>
         <attr name="textColor_" format="color" />
         <attr name="chipColor_" format="color" />
         <attr name="showText_" format="boolean" />

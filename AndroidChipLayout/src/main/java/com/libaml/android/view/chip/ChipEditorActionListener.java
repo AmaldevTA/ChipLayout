@@ -15,11 +15,13 @@ public class ChipEditorActionListener implements EditText.OnEditorActionListener
     }
 
     public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (editText.getText() != null && editText.getText().toString().length() > 0){
-                editText.setText(editText.getText().toString()+",");
+        try{
+            if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (editText.getText() != null && editText.getText().toString().length() > 0){
+                    editText.setText(editText.getText().toString()+",");
+                }
             }
-        }
+        }catch (Exception e){}
         return true;
     }
 }

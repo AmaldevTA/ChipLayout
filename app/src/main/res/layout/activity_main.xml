@@ -7,7 +7,7 @@
 
     <com.libaml.android.view.chip.ChipLayout
         android:id="@+id/chipText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         custom:textSize_="10dp"
         custom:chipPadding_="4dp"

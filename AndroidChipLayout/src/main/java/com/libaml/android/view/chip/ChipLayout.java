@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,9 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     private final List<Integer> mLineHeights = new ArrayList<Integer>();
     private final List<Integer> mLineMargins = new ArrayList<Integer>();
 
-    private float textSize, chipTextPadding, chipPadding;
+    private float textSize, chipTextPadding, chipPadding, chipPaddingLeft, chipPaddingRight,
+            chipPaddingTop, chipPaddingBottom, chipTextPaddingLeft, chipTextPaddingRight,
+            chipTextPaddingTop, chipTextPaddingBottom;
     private ChipLayout chipLayout;
     private Context context;
     private boolean showDeleteButton;
@@ -49,6 +52,8 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     private AdapterView.OnItemClickListener onItemClickListener;
     private OnClickListener onClickListener;
     private OnFocusChangeListener onFocusChangeListener;
+    private int dropDownWidth = 300;
+
 
     public ChipLayout(Context context) {
         this(context, null);
@@ -72,7 +77,15 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         chipLayoutDrawable = a_.getDrawable(R.styleable.chip_layout_chipLayoutDrawable_);
         textSize = a_.getDimension(R.styleable.chip_layout_textSize_, 0);
         chipTextPadding = a_.getDimension(R.styleable.chip_layout_chipTextPadding_, 0);
+        chipTextPaddingLeft = a_.getDimension(R.styleable.chip_layout_chipTextPaddingLeft_, 0);
+        chipTextPaddingRight = a_.getDimension(R.styleable.chip_layout_chipTextPaddingRight_, 0);
+        chipTextPaddingTop = a_.getDimension(R.styleable.chip_layout_chipTextPaddingTop_, 0);
+        chipTextPaddingBottom = a_.getDimension(R.styleable.chip_layout_chipTextPaddingBottom_, 0);
         chipPadding = a_.getDimension(R.styleable.chip_layout_chipPadding_, 0);
+        chipPaddingLeft = a_.getDimension(R.styleable.chip_layout_chipPaddingLeft_, 0);
+        chipPaddingRight = a_.getDimension(R.styleable.chip_layout_chipPaddingRight_, 0);
+        chipPaddingTop = a_.getDimension(R.styleable.chip_layout_chipPaddingTop_, 0);
+        chipPaddingBottom = a_.getDimension(R.styleable.chip_layout_chipPaddingBottom_, 0);
 
         if(deleteIcon != null) {
             deleteIcon_ = ((BitmapDrawable) deleteIcon).getBitmap();
@@ -301,7 +314,6 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
 
                 LayoutParams lp = (LayoutParams) child.getLayoutParams();
 
-                // if height is match_parent we need to remeasure child to line height
                 if(lp.height == LayoutParams.MATCH_PARENT) {
                     int childWidthMode = MeasureSpec.AT_MOST;
                     int childWidthSize = lineWidth;
@@ -474,10 +486,12 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     private LinearLayout createLinearLayout(Context context) {
 
         final LayoutParams lparamsLayout = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        lparamsLayout.setMargins((int)chipPadding+2, (int)chipPadding+2, (int)chipPadding+2, (int)chipPadding+2);
+        lparamsLayout.setMargins((int)chipPadding+(int)chipPaddingLeft+2, (int)chipPadding+(int)chipPaddingTop+2,
+                (int)chipPadding+(int)chipPaddingRight+2, (int)chipPadding+(int)chipPaddingBottom+2);
         lparamsLayout.gravity = Gravity.CENTER;
         final LinearLayout layout = new LinearLayout(context);
-        layout.setPadding((int)chipTextPadding, (int)chipTextPadding, (int)chipTextPadding, (int)chipTextPadding);
+        layout.setPadding((int)chipTextPadding+(int)chipTextPaddingLeft, (int)chipTextPadding+(int)chipTextPaddingTop,
+                (int)chipTextPadding+(int)chipTextPaddingRight, (int)chipTextPadding+(int)chipTextPaddingBottom);
         layout.setOrientation(LinearLayout.HORIZONTAL);
         layout.setLayoutParams(lparamsLayout);
         layout.setFocusable(true);
@@ -526,6 +540,26 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         autoCompleteTextView.requestFocus();
         autoCompleteTextView.setOnEditorActionListener(new ChipEditorActionListener(autoCompleteTextView));
         autoCompleteTextView.setAdapter(adapter);
+        int density= context.getResources().getDisplayMetrics().densityDpi;
+        switch(density)
+        {
+            case DisplayMetrics.DENSITY_LOW:
+                break;
+            case DisplayMetrics.DENSITY_MEDIUM:
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                dropDownWidth = 280;
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+                dropDownWidth = 300;
+                break;
+            case DisplayMetrics.DENSITY_XXHIGH:
+                dropDownWidth = 320;
+                break;
+            case DisplayMetrics.DENSITY_560:
+                dropDownWidth = 360;
+                break;
+        }
         if(chipLayout.getWidth() < 1){
             ViewTreeObserver vto = this.getViewTreeObserver();
             vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -536,16 +570,16 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
                     } else {
                         chipLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
-                    if(chipLayout.getWidth() < 300){
-                        autoCompleteTextView.setDropDownWidth(300);
+                    if(chipLayout.getWidth() < dropDownWidth){
+                        autoCompleteTextView.setDropDownWidth(dropDownWidth);
                     }else{
                         autoCompleteTextView.setDropDownWidth(chipLayout.getWidth());
                     }
                 }
             });
         }else{
-            if(chipLayout.getWidth() < 300){
-                autoCompleteTextView.setDropDownWidth(300);
+            if(chipLayout.getWidth() < dropDownWidth){
+                autoCompleteTextView.setDropDownWidth(dropDownWidth);
             }else{
                 autoCompleteTextView.setDropDownWidth(chipLayout.getWidth());
             }

@@ -73,7 +73,6 @@ public class ChipTextWatcher implements TextWatcher {
                 if(val.length() > 20){
                     editText.setText(textToChip(val.substring(0, 20), true));
                 }else {
-                   // editText.setText(textToChip(val, false));
                     editText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                     editText.setText(val);
                 }
@@ -83,11 +82,6 @@ public class ChipTextWatcher implements TextWatcher {
                 editText.setFocusableInTouchMode(false);
                 ((AutoCompleteTextView)editText).setAdapter(null);
                 ((AutoCompleteTextView)editText).setOnItemClickListener(null);
-
-//                editText.removeTextChangedListener(this);
-//                for (TextWatcher tw: listTextWatcher){
-//                    editText.removeTextChangedListener(tw);
-//                }
 
                 if(chipDrawable != null){
                     int currentVersion = Build.VERSION.SDK_INT;
@@ -119,28 +113,30 @@ public class ChipTextWatcher implements TextWatcher {
     private SpannableStringBuilder textToChip(String val, boolean trim){
 
         SpannableStringBuilder ssb = new SpannableStringBuilder(val);
-        TextView textView = createAutoCompleteTextView(context);
-        if (trim){
-            textView.setText(val+"..");
-        }else {
-            textView.setText(val);
-        }
 
+        try{
+            TextView textView = createAutoCompleteTextView(context);
+            if (trim){
+                textView.setText(val+"..");
+            }else {
+                textView.setText(val);
+            }
+            int spec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            textView.measure(spec, spec);
+            textView.layout(0, 0, textView.getMeasuredWidth(),textView.getMeasuredHeight());
+            Bitmap b = Bitmap.createBitmap(textView.getWidth(),textView.getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(b);
+            canvas.translate(-textView.getScrollX(), -textView.getScrollY());
+            textView.draw(canvas);
+            textView.setDrawingCacheEnabled(true);
+            Bitmap cacheBmp = textView.getDrawingCache();
+            Bitmap viewBmp = cacheBmp.copy(Bitmap.Config.ARGB_8888, true);
+            textView.destroyDrawingCache();
+            BitmapDrawable bmpDrawable = new BitmapDrawable(context.getResources(), viewBmp);
+            bmpDrawable.setBounds(0, 0, bmpDrawable.getIntrinsicWidth(), bmpDrawable.getIntrinsicHeight());
+            ssb.setSpan(new ImageSpan(bmpDrawable), 0, val.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }catch (Exception e){}
 
-        int spec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        textView.measure(spec, spec);
-        textView.layout(0, 0, textView.getMeasuredWidth(),textView.getMeasuredHeight());
-        Bitmap b = Bitmap.createBitmap(textView.getWidth(),textView.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(b);
-        canvas.translate(-textView.getScrollX(), -textView.getScrollY());
-        textView.draw(canvas);
-        textView.setDrawingCacheEnabled(true);
-        Bitmap cacheBmp = textView.getDrawingCache();
-        Bitmap viewBmp = cacheBmp.copy(Bitmap.Config.ARGB_8888, true);
-        textView.destroyDrawingCache();
-        BitmapDrawable bmpDrawable = new BitmapDrawable(context.getResources(), viewBmp);
-        bmpDrawable.setBounds(0, 0, bmpDrawable.getIntrinsicWidth(), bmpDrawable.getIntrinsicHeight());
-        ssb.setSpan(new ImageSpan(bmpDrawable), 0, val.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return ssb;
     }

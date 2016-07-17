@@ -78,11 +78,7 @@ public class ChipOnFocusChangeListener implements View.OnFocusChangeListener {
                         e.printStackTrace();
                     }
                 }
-                /**
-                 * android.R.attr.state_pressed
-                 * android.R.attr.state_focused
-                 * android.R.attr.state_enabled
-                 **/
+
                 if(b){
                     Drawable drawable = (Drawable) getStateDrawable.invoke(stateListDrawable, statePressed);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
