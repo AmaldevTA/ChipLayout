@@ -6,6 +6,8 @@ ChipLayout is an opensource Android library. ChipLayout is an layout which creat
 Example
 -------
 ![Framed example screenshot](https://github.com/OfficialAmal/ChipLayout/tree/master/img/img1.png)
+<br>
+![Framed example screenshot](https://github.com/OfficialAmal/ChipLayout/tree/master/img/img2.png)
 Source code with examples is included in repository.
 
 Usage
@@ -50,3 +52,49 @@ Find the View in your Activity or Fragment class.
         chip.setOnFocusChangeListener(FocusChangeListener);
 ```
 
+XML attributes 
+
+ 	        textSize_  		    	format=  dimension  
+            chipPadding_   		    format=  dimension  
+            chipPaddingLeft_   		format=  dimension  
+            chipPaddingRight_  		format=  dimension  
+            chipPaddingTop_   		format=  dimension  
+            chipPaddingBottom_  	format=  dimension  
+            chipTextPadding_   		format=  dimension  
+            chipTextPaddingLeft_   	format=  dimension  
+            chipTextPaddingRight_  	format=  dimension  
+            chipTextPaddingTop_   	format=  dimension  
+            chipTextPaddingBottom_  format=  dimension  
+            textColor_      		format=  color   
+            chipColor_   		    format=  color   
+            showText_   	    	format=  boolean   
+            showDeleteButton_   	format=  boolean   
+            deleteIcon_   	    	format=  reference   
+            chipDrawable_   		format=  reference   
+            chipLayoutDrawable_   	format=  reference   
+            labelPosition_   		format=  (left/right) 
+          
+Public Methods
+
+            public void setOnClickListener(OnClickListener l)
+            public void setOnItemClickListener(AdapterView.OnItemClickListener l) 
+            public void removeChipAt(int pos)
+            public void setAdapter(ArrayAdapter adapter)
+            public void setText(List<String> vals)
+            public void addLayoutTextChangedListener(TextWatcher textWatcher)
+            public void removeLayoutTextChangedListener(TextWatcher textWatcher)
+            public void setTextColor(int textColor)
+            public void setChipColor(int bgColor)
+
+            public AdapterView.OnItemClickListener getOnItemClickListener()
+            public int getTextColor()
+            public int getChipColor()
+            public List<String> getText()
+            public ArrayAdapter getAdapter()
+            
+Dependencies
+------------
+### Gradle
+```
+compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.0'
+```
