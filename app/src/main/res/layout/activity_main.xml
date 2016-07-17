@@ -6,7 +6,6 @@
     android:background="#FFF"
     android:padding="10dp"
     android:orientation="vertical">
-
     <com.libaml.android.view.chip.ChipLayout
         android:id="@+id/chipText"
         android:layout_width="match_parent"
@@ -19,9 +18,5 @@
         custom:chipDrawable_="@drawable/round_corner_drawable"
         custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"
         custom:labelPosition_="left">
-
     </com.libaml.android.view.chip.ChipLayout>
-
-
-
 </LinearLayout>

@@ -55,3 +55,23 @@ artifacts {
     archives generateSourcesJar
 }
 
+bintray {
+    user = 'officialamal'
+    key = '9be880139f3efbbaa70697ac73ed11cf58107f60'
+    pkg {
+        repo = 'maven'
+        name = 'ChipLayout'
+
+        version {
+            name = '1.0.1'
+            desc = 'ChipLayout 1.0.1'
+            released  = new Date()
+            vcsTag = '1.0.1'
+        }
+
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/OfficialAmal/ChipLayout.git'
+        websiteUrl = 'https://github.com/OfficialAmal/ChipLayout'
+    }
+    configurations = ['archives']
+}
