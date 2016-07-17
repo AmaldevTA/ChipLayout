@@ -6,7 +6,7 @@ ChipLayout is an opensource Android library. ChipLayout is an layout which creat
 Example
 -------
 ![Framed example screenshot](https://github.com/OfficialAmal/ChipLayout/tree/master/img/img1.png)
-![Framed example screenshot](https://github.com/OfficialAmal/ChipLayout/tree/master/img/img2.png)
+![Alt text](https://github.com/OfficialAmal/ChipLayout/tree/master/img/img2.png "screen shot")
 Source code with examples is included in repository.
 
 Usage
