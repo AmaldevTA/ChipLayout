@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_pressed="true"
-        android:drawable="@drawable/landing_page_hire_edit_text_design_focused"
+        android:drawable="@drawable/landing_page_edit_text_design_focused"
         /> <!-- pressed -->
     <item
         android:state_focused="true"
-        android:drawable="@drawable/landing_page_hire_edit_text_design_focused"
+        android:drawable="@drawable/landing_page_edit_text_design_focused"
         /> <!-- focused -->
     <item
-        android:drawable="@drawable/landing_page_hire_edit_text_design_unfocused"
+        android:drawable="@drawable/landing_page_edit_text_design_unfocused"
         /> <!-- default -->
 </selector>
