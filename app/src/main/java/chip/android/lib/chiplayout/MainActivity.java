@@ -1,6 +1,7 @@
 package chip.android.lib.chiplayout;
 
 import android.annotation.TargetApi;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChipAdded(int pos, String txt) {
                 Log.d(txt,String.valueOf(pos));
+
             }
 
             @Override
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         String[] countries = {"india","australia","austria","indonesia","canada"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countries);
         chip.setAdapter(adapter);
+
 
 
     }

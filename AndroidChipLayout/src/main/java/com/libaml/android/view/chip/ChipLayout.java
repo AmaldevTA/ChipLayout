@@ -730,6 +730,26 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         return this.chipColor;
     }
 
+    public void highlightChipAt(int pos, int bgColor, int textColor){
+        View v = this.getChildAt(pos);
+        v.setBackgroundColor(bgColor);
+        AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) ((ViewGroup)v).getChildAt(labelPosition);
+        autoCompleteTextView.setTextColor(textColor);
+
+    }
+
+    public void highlightChipAt(int pos, Drawable bgDrawable, int textColor){
+        View v = this.getChildAt(pos);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+            v.setBackground(bgDrawable);
+        } else{
+            v.setBackgroundDrawable(bgDrawable);
+        }
+        AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) ((ViewGroup)v).getChildAt(labelPosition);
+        autoCompleteTextView.setTextColor(textColor);
+    }
+
+
     public void setChipDrawable(Drawable bgDrawable){
         this.chipDrawable = bgDrawable;
         for (int i = 0; i < this.getChildCount(); i++){
