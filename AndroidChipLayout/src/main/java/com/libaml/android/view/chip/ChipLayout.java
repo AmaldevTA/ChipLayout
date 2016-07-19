@@ -52,6 +52,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     private AdapterView.OnItemClickListener onItemClickListener;
     private OnClickListener onClickListener;
     private OnFocusChangeListener onFocusChangeListener;
+    private ChipItemChangeListener chipItemChangeListener;
     private int dropDownWidth = 300;
 
 
@@ -110,6 +111,19 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         createNewChipLayout(null);
         setOnClickListener();
 
+    }
+
+    public interface ChipItemChangeListener{
+        void onChipAdded(int pos, String txt);
+        void onChipRemoved(int pos, String txt);
+    }
+
+    public void setOnChipItemChangeListener(ChipItemChangeListener l){
+        this.chipItemChangeListener = l;
+    }
+
+    public ChipItemChangeListener getOnChipItemChangeListener(){
+        return this.chipItemChangeListener;
     }
 
     /**
@@ -473,10 +487,8 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 View chip = (View) view.getParent();
-                chipLayout.removeView(chip);
-                if(chipLayout.getChildCount() < 1){
-                    createNewChipLayout(null);
-                }
+                int pos = chipLayout.indexOfChild(chip);
+                removeChipAt(pos);
             }
         });
         imageButton.setVisibility(View.GONE);
@@ -611,6 +623,19 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         this.addView(createChips(context, val, setText));
     }
 
+    void chipCreated(ViewGroup vg){
+        AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) vg.getChildAt(labelPosition);
+        int pos = chipLayout.indexOfChild(vg);
+
+        if(chipItemChangeListener != null){
+            if(autoCompleteTextView.getText() != null && autoCompleteTextView.getText().toString().length() > 0){
+                chipItemChangeListener.onChipAdded(pos, autoCompleteTextView.getText().toString());
+            }else {
+                chipItemChangeListener.onChipAdded(pos, "");
+            }
+        }
+    }
+
     @Override
     public void setOnFocusChangeListener(OnFocusChangeListener f) {
         onFocusChangeListener = f;
@@ -741,7 +766,15 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     }
 
     public void removeChipAt(int pos){
+        AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) ((ViewGroup)this.getChildAt(pos)).getChildAt(labelPosition);
         this.removeViewAt(pos);
+        if(chipItemChangeListener != null){
+            if(autoCompleteTextView.getText() != null && autoCompleteTextView.getText().toString().length() > 0){
+                chipItemChangeListener.onChipRemoved(pos, autoCompleteTextView.getText().toString());
+            }else{
+                chipItemChangeListener.onChipRemoved(pos, "");
+            }
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

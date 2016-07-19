@@ -104,6 +104,7 @@ public class ChipTextWatcher implements TextWatcher {
                 if(!setText){
                     chipLayout.createNewChipLayout(null);
                 }
+                chipLayout.chipCreated(chip);
             }
 
         }

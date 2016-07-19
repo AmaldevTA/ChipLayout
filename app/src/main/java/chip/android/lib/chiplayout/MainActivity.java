@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Log.d("---------------",editable.toString());
+               // Log.d("---------------",editable.toString());
 
             }
         });
@@ -59,7 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("----",String.valueOf(b));
             }
         });
+        chip.setOnChipItemChangeListener(new ChipLayout.ChipItemChangeListener() {
+            @Override
+            public void onChipAdded(int pos, String txt) {
+                Log.d(txt,String.valueOf(pos));
+            }
 
+            @Override
+            public void onChipRemoved(int pos, String txt) {
+                Log.d(txt,String.valueOf(pos));
+            }
+        });
 
 
         String[] countries = {"india","australia","austria","indonesia","canada"};
