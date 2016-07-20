@@ -76,28 +76,42 @@ XML attributes
             chipDrawable_   		format=  reference   
             chipLayoutDrawable_   	format=  reference   
             labelPosition_   		format=  (left/right) 
+            
+Public Fields
+```java
+            static int MAX_CHARACTER_COUNT
+```
           
 Public Methods
-
+```java
             public void setOnClickListener(OnClickListener l)
             public void setOnItemClickListener(AdapterView.OnItemClickListener l) 
+            public void addLayoutTextChangedListener(TextWatcher textWatcher)
+            public void removeLayoutTextChangedListener(TextWatcher textWatcher)
+            public void setOnChipItemChangeListener(ChipItemChangeListener l)
             public void removeChipAt(int pos)
             public void setAdapter(ArrayAdapter adapter)
             public void setText(List<String> vals)
-            public void addLayoutTextChangedListener(TextWatcher textWatcher)
-            public void removeLayoutTextChangedListener(TextWatcher textWatcher)
             public void setTextColor(int textColor)
             public void setChipColor(int bgColor)
 
             public AdapterView.OnItemClickListener getOnItemClickListener()
+            public ChipItemChangeListener getOnChipItemChangeListener()
             public int getTextColor()
             public int getChipColor()
             public List<String> getText()
             public ArrayAdapter getAdapter()
             
+            public void highlightChipAt(int pos, Drawable bgDrawable, int textColor)
+            public void highlightChipAt(int pos, int bgColor, int textColor)
+```
+            
 Dependencies
 ------------
 ### Gradle
 ```
-compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.1'
+compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.2'
 ```
+OR
+
+Module dependency - <br>Download folder 'AndroidChipLayout' and add as module dependency
