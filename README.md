@@ -1,3 +1,6 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ChipLayout-green.svg?style=true)](https://android-arsenal.com/details/1/3942)
+<br>
+
 ChipLayout
 ==========
 
