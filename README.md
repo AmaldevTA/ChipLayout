@@ -7,9 +7,9 @@ Example
 -------
 
 ### Screenshots
-![Screenshot 1](https://github.com/OfficialAmal/ChipLayout/tree/master/img/img1.png)
-
-![Screenshot 2](https://github.com/OfficialAmal/ChipLayout/tree/master/img/img2.png)
+<img src="./img/img1.png" width="500">
+<br>
+<img src="./img/img2.png" width="500">
 
 Source code with examples is included in repository.
 
