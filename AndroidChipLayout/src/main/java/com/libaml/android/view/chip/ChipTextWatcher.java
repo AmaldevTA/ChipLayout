@@ -70,8 +70,8 @@ public class ChipTextWatcher implements TextWatcher {
             if (text.charAt(text.length()-1) == ','){
                 EditText editText = (EditText)chip.getChildAt(labelPosition);
                 String val = text.substring(0, text.length()-1);
-                if(val.length() > 20){
-                    editText.setText(textToChip(val.substring(0, 20), true));
+                if(val.length() > ChipLayout.MAX_CHARACTER_COUNT){
+                    editText.setText(textToChip(val, true));
                 }else {
                     editText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                     editText.setText(val);
@@ -118,7 +118,7 @@ public class ChipTextWatcher implements TextWatcher {
         try{
             TextView textView = createAutoCompleteTextView(context);
             if (trim){
-                textView.setText(val+"..");
+                textView.setText(val.substring(0, ChipLayout.MAX_CHARACTER_COUNT)+"..");
             }else {
                 textView.setText(val);
             }

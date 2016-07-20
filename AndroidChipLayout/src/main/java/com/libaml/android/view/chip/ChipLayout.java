@@ -8,7 +8,6 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextWatcher;
@@ -30,6 +29,8 @@ import java.util.List;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class ChipLayout extends ViewGroup implements View.OnClickListener {
+
+    public static int MAX_CHARACTER_COUNT = 20;
 
     private int mGravity = (isIcs() ? Gravity.START : Gravity.LEFT) | Gravity.TOP;
 
