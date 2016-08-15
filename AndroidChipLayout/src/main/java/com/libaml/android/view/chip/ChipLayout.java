@@ -530,10 +530,6 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         }
 
 
-        if(textSize > 0){
-            autoCompleteTextView.setTextSize(textSize);
-        }
-
         Drawable newDrawable = null;
         if(chipDrawable != null){
             newDrawable = chipDrawable.getConstantState().newDrawable();
@@ -541,6 +537,10 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
 
         TextWatcher textWatcher = new ChipTextWatcher(layout, context, this, textColor, chipColor, newDrawable,
                 showDeleteButton, labelPosition, listTextWatcher, setText);
+        if(textSize > 0){
+            autoCompleteTextView.setTextSize(textSize);
+            ((ChipTextWatcher)textWatcher).setTextSize(textSize);
+        }
         autoCompleteTextView.addTextChangedListener(textWatcher);
         for (TextWatcher tw: listTextWatcher){
             autoCompleteTextView.addTextChangedListener(tw);

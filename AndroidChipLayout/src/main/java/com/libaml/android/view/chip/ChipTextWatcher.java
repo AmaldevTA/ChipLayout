@@ -33,6 +33,7 @@ public class ChipTextWatcher implements TextWatcher {
     private Drawable chipDrawable;
     private boolean showDeleteButton, setText;
     private int labelPosition;
+    private float textSize = 0;
     private List<TextWatcher> listTextWatcher;
 
     public ChipTextWatcher(ViewGroup chip, Context context,
@@ -60,6 +61,10 @@ public class ChipTextWatcher implements TextWatcher {
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+    }
+
+    public void setTextSize(float textSize) {
+        this.textSize = textSize;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -152,6 +157,9 @@ public class ChipTextWatcher implements TextWatcher {
         textView.setLayoutParams(lparamsTextView);
         textView.setSingleLine(true);
         textView.setTextColor(textColor);
+        if(textSize > 0){
+            textView.setTextSize(textSize);
+        }
         return textView;
     }
 }
