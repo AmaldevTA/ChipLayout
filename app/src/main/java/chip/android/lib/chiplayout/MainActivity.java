@@ -2,6 +2,7 @@ package chip.android.lib.chiplayout;
 
 import android.annotation.TargetApi;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import com.libaml.android.view.chip.ChipLayout;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -78,9 +81,6 @@ public class MainActivity extends AppCompatActivity {
         String[] countries = {"india","australia","austria","indonesia","canada"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countries);
         chip.setAdapter(adapter);
-
-
-
     }
 
     public void click(View v){

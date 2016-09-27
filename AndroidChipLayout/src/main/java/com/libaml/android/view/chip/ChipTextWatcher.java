@@ -162,4 +162,16 @@ public class ChipTextWatcher implements TextWatcher {
         }
         return textView;
     }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+
+    public void setChipColor(int chipColor) {
+        this.chipColor = chipColor;
+    }
+
+    public void setChipDrawable(Drawable chipDrawable) {
+        this.chipDrawable = chipDrawable;
+    }
 }

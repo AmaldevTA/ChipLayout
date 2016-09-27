@@ -55,7 +55,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     private OnFocusChangeListener onFocusChangeListener;
     private ChipItemChangeListener chipItemChangeListener;
     private int dropDownWidth = 300;
-
+    private TextWatcher focusedTextWatcher;
 
     public ChipLayout(Context context) {
         this(context, null);
@@ -537,6 +537,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
 
         TextWatcher textWatcher = new ChipTextWatcher(layout, context, this, textColor, chipColor, newDrawable,
                 showDeleteButton, labelPosition, listTextWatcher, setText);
+        focusedTextWatcher = textWatcher;
         if(textSize > 0){
             autoCompleteTextView.setTextSize(textSize);
             ((ChipTextWatcher)textWatcher).setTextSize(textSize);
@@ -711,6 +712,8 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         for (int i = 0; i < this.getChildCount(); i++){
             AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) ((ViewGroup)this.getChildAt(i)).getChildAt(labelPosition);
             autoCompleteTextView.setTextColor(textColor);
+            ((ChipTextWatcher)focusedTextWatcher).setTextColor(textColor);
+
         }
     }
 
@@ -722,8 +725,14 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         this.chipColor = bgColor;
         this.chipDrawable = null;
         for (int i = 0; i < this.getChildCount(); i++){
-            View v = this.getChildAt(i);
-            v.setBackgroundColor(chipColor);
+            AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) ((ViewGroup)this.getChildAt(i)).getChildAt(labelPosition);
+            if(!autoCompleteTextView.isFocusable()){
+                View v = this.getChildAt(i);
+                v.setBackgroundColor(chipColor);
+            }else{
+                ((ChipTextWatcher)focusedTextWatcher).setChipColor(chipColor);
+                ((ChipTextWatcher)focusedTextWatcher).setChipDrawable(null);
+            }
         }
     }
 
@@ -754,12 +763,18 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     public void setChipDrawable(Drawable bgDrawable){
         this.chipDrawable = bgDrawable;
         for (int i = 0; i < this.getChildCount(); i++){
-            View v = this.getChildAt(i);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
-                v.setBackground(chipDrawable);
-            } else{
-                v.setBackgroundDrawable(chipDrawable);
+            AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) ((ViewGroup)this.getChildAt(i)).getChildAt(labelPosition);
+            if(!autoCompleteTextView.isFocusable()){
+                View v = this.getChildAt(i);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+                    v.setBackground(chipDrawable);
+                } else{
+                    v.setBackgroundDrawable(chipDrawable);
+                }
+            }else {
+                ((ChipTextWatcher)focusedTextWatcher).setChipDrawable(chipDrawable);
             }
+
         }
     }
 
@@ -819,25 +834,4 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         return this.adapter;
     }
 
-
-
-//    public void setLayoutBackgroundDrawable(Drawable drawable){
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN){
-//            super.setBackground(drawable);
-//        } else{
-//            super.setBackgroundDrawable(drawable);
-//        }
-//    }
-
-//    public Drawable getLayoutBackgroundDrawable(){
-//        return this.getBackground();
-//    }
-
-//    public void setLayoutBackgroundResource(int resid){
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            setLayoutBackground(getResources().getDrawable(resid, context.getTheme()));
-//        } else {
-//            setLayoutBackground(getResources().getDrawable(resid));
-//        }
-//    }
 }
