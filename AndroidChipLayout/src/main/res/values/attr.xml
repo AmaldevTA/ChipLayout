@@ -23,6 +23,7 @@
         <attr name="textColor_" format="color" />
         <attr name="chipColor_" format="color" />
         <attr name="showText_" format="boolean" />
+        <attr name="hint_" format="string" />
         <attr name="showDeleteButton_" format="boolean" />
         <attr name="deleteIcon_" format="reference" />
         <attr name="chipDrawable_" format="reference" />

@@ -38,6 +38,8 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     private final List<Integer> mLineHeights = new ArrayList<Integer>();
     private final List<Integer> mLineMargins = new ArrayList<Integer>();
 
+    String autoCompleteTextViewTag = "chip_autoCompleteTextView", imageButtonTag = "chip_imageButton";
+
     private float textSize, chipTextPadding, chipPadding, chipPaddingLeft, chipPaddingRight,
             chipPaddingTop, chipPaddingBottom, chipTextPaddingLeft, chipTextPaddingRight,
             chipTextPaddingTop, chipTextPaddingBottom;
@@ -46,6 +48,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     private boolean showDeleteButton;
     private int labelPosition;
     private int textColor, chipColor;
+    private String hintText;
     private Drawable deleteIcon, chipDrawable, chipLayoutDrawable;
     private Bitmap deleteIcon_ = null;
     private List<TextWatcher>  listTextWatcher = new ArrayList<>();
@@ -78,6 +81,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         labelPosition = a_.getInt(R.styleable.chip_layout_labelPosition_, 0);
         chipLayoutDrawable = a_.getDrawable(R.styleable.chip_layout_chipLayoutDrawable_);
         textSize = a_.getDimension(R.styleable.chip_layout_textSize_, 0);
+        hintText = a_.getString(R.styleable.chip_layout_hint_);
         chipTextPadding = a_.getDimension(R.styleable.chip_layout_chipTextPadding_, 0);
         chipTextPaddingLeft = a_.getDimension(R.styleable.chip_layout_chipTextPaddingLeft_, 0);
         chipTextPaddingRight = a_.getDimension(R.styleable.chip_layout_chipTextPaddingRight_, 0);
@@ -518,8 +522,12 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
 
         final LinearLayout layout = createLinearLayout(context);
         final AutoCompleteTextView autoCompleteTextView = createAutoCompleteTextView(context);
+        autoCompleteTextView.setTag(autoCompleteTextViewTag);
+        if(this.getChildCount() < 1 && hintText != null){
+            autoCompleteTextView.setHint(hintText);
+        }
         final ImageButton imageButton = createImageButton(context);
-
+        imageButton.setTag(imageButtonTag);
 
         if(labelPosition == 0){
             layout.addView(autoCompleteTextView);
@@ -554,7 +562,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         autoCompleteTextView.requestFocus();
         autoCompleteTextView.setOnEditorActionListener(new ChipEditorActionListener(autoCompleteTextView));
         autoCompleteTextView.setAdapter(adapter);
-        int density= context.getResources().getDisplayMetrics().densityDpi;
+        int density = context.getResources().getDisplayMetrics().densityDpi;
         switch(density)
         {
             case DisplayMetrics.DENSITY_LOW:
@@ -811,6 +819,11 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
                 chipItemChangeListener.onChipRemoved(pos, "");
             }
         }
+    }
+
+    public void removeAllChips(){
+        this.removeAllViews();
+        createNewChipLayout(null);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
