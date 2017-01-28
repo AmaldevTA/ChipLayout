@@ -458,8 +458,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
 
     }
 
-    private AutoCompleteTextView createAutoCompleteTextView(Context context)
-    {
+    private AutoCompleteTextView createAutoCompleteTextView(Context context) {
         final LayoutParams lparamsTextView = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         lparamsTextView.setMargins(0, 0, 10, 0);
         lparamsTextView.gravity = Gravity.CENTER;
@@ -790,6 +789,18 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         return this.chipDrawable;
     }
 
+    public void setHint(String hint){
+        hintText = hint;
+        if (this.getChildCount() == 1){
+            AutoCompleteTextView textView = (AutoCompleteTextView) this.getChildAt(0).findViewWithTag(autoCompleteTextViewTag);
+            textView.setHint(hintText);
+        }
+    }
+
+    public String getHint(){
+        return hintText;
+    }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void setText(List<String> vals){
         this.removeAllViews();
@@ -819,6 +830,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
                 chipItemChangeListener.onChipRemoved(pos, "");
             }
         }
+        setHint(hintText);
     }
 
     public void removeAllChips(){

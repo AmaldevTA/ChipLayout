@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 24
-        versionCode 5
-        versionName "1.0.4"
+        versionCode 6
+        versionName "1.0.5"
     }
     buildTypes {
         release {
@@ -27,7 +27,7 @@ dependencies {
 }
 
 group = 'com.libaml.android.view.chip'
-version = '1.0.4'
+version = '1.0.5'
 
 task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -54,4 +54,3 @@ artifacts {
     archives generateJavaDocsJar
     archives generateSourcesJar
 }
-

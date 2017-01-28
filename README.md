@@ -78,7 +78,8 @@ XML attributes
             deleteIcon_   	    	format=  reference   
             chipDrawable_   		format=  reference   
             chipLayoutDrawable_   	format=  reference   
-            labelPosition_   		format=  (left/right) 
+            labelPosition_   		format=  (left/right)
+            hint_                   format=  string
             
 Public Fields
 ```java
@@ -93,6 +94,7 @@ Public Methods
             public void removeLayoutTextChangedListener(TextWatcher textWatcher)
             public void setOnChipItemChangeListener(ChipItemChangeListener l)
             public void removeChipAt(int pos)
+            public void removeAllChips()
             public void setAdapter(ArrayAdapter adapter)
             public void setText(List<String> vals)
             public void setTextColor(int textColor)
@@ -113,7 +115,7 @@ Dependencies
 ------------
 ### Gradle
 ```
-compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.4'
+compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.5'
 ```
 OR
 

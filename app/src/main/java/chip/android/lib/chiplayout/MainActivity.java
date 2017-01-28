@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ChipLayout.MAX_CHARACTER_COUNT = 20;
         chip = (ChipLayout) findViewById(R.id.chipText);
-
         chip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

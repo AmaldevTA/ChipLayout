@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         custom:textSize_="10dp"
-        custom:hint_="hello"
+        custom:hint_="countries"
         custom:chipPadding_="4dp"
         custom:chipTextPadding_="2dp"
         custom:textColor_="@android:color/black"
