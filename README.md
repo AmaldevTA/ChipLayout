@@ -72,7 +72,8 @@ XML attributes
             chipTextPaddingTop_   	format=  dimension  
             chipTextPaddingBottom_  format=  dimension  
             textColor_      		format=  color   
-            chipColor_   		    format=  color   
+            hintColor_      		format=  color
+            chipColor_   		    format=  color
             showText_   	    	format=  boolean   
             showDeleteButton_   	format=  boolean   
             deleteIcon_   	    	format=  reference   
