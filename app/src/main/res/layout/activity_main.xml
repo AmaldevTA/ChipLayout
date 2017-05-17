@@ -15,6 +15,7 @@
         custom:chipPadding_="4dp"
         custom:chipTextPadding_="2dp"
         custom:textColor_="@android:color/black"
+        custom:hintColor_="@android:color/darker_gray"
         custom:deleteIcon_="@android:drawable/presence_offline"
         custom:chipDrawable_="@drawable/round_corner_drawable"
         custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"

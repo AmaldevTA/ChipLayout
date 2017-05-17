@@ -21,6 +21,7 @@
         <attr name="chipTextPaddingTop_" format="dimension"/>
         <attr name="chipTextPaddingBottom_" format="dimension"/>
         <attr name="textColor_" format="color" />
+        <attr name="hintColor_" format="color" />
         <attr name="chipColor_" format="color" />
         <attr name="showText_" format="boolean" />
         <attr name="hint_" format="string" />

@@ -47,7 +47,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
     private Context context;
     private boolean showDeleteButton;
     private int labelPosition;
-    private int textColor, chipColor;
+    private int textColor, chipColor, hintColor;
     private String hintText;
     private Drawable deleteIcon, chipDrawable, chipLayoutDrawable;
     private Bitmap deleteIcon_ = null;
@@ -74,6 +74,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         TypedArray a_ = context.getTheme().obtainStyledAttributes(attrs, R.styleable.chip_layout, defStyle, 0);
 
         textColor = a_.getColor(R.styleable.chip_layout_textColor_, Color.parseColor("#000000"));
+        hintColor = a_.getColor(R.styleable.chip_layout_hintColor_, Color.parseColor("#80000000"));
         chipColor = a_.getColor(R.styleable.chip_layout_chipColor_, Color.parseColor("#00FFFFFF"));
         chipDrawable = a_.getDrawable(R.styleable.chip_layout_chipDrawable_);
         deleteIcon = a_.getDrawable(R.styleable.chip_layout_deleteIcon_);
@@ -469,6 +470,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         autoCompleteTextView.setPadding(10,0,10,10);
         autoCompleteTextView.setSingleLine(true);
         autoCompleteTextView.setTextColor(textColor);
+        autoCompleteTextView.setHintTextColor(hintColor);
         autoCompleteTextView.setCursorVisible(true);
 
         return autoCompleteTextView;
@@ -722,6 +724,10 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
             ((ChipTextWatcher)focusedTextWatcher).setTextColor(textColor);
 
         }
+    }
+
+    public void setHintColor(int hintColor){
+        this.hintColor = hintColor;
     }
 
     public int getTextColor(){
