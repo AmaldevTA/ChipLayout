@@ -116,7 +116,7 @@ Dependencies
 ------------
 ### Gradle
 ```
-compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.5'
+compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.6'
 ```
 OR
 
