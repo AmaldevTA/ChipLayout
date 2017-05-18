@@ -85,6 +85,7 @@ public class ChipTextWatcher implements TextWatcher {
                 editText.setCursorVisible(false);
                 editText.setFocusable(false);
                 editText.setFocusableInTouchMode(false);
+                editText.setHint("");
                 ((AutoCompleteTextView)editText).setAdapter(null);
                 ((AutoCompleteTextView)editText).setOnItemClickListener(null);
 
