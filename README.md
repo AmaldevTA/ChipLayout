@@ -81,7 +81,8 @@ XML attributes
             chipLayoutDrawable_   	format=  reference   
             labelPosition_   		format=  (left/right)
             hint_                   format=  string
-            
+            threshold_              format=  integer
+
 Public Fields
 ```java
             static int MAX_CHARACTER_COUNT
@@ -117,6 +118,7 @@ Dependencies
 ### Gradle
 ```
 compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.6'
+//For getting recent changes, import this as module dependency
 ```
 OR
 
