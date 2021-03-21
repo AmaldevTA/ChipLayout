@@ -6,6 +6,30 @@ ChipLayout
 
 ChipLayout is an opensource Android library. ChipLayout is an layout which create chips from the text you type and also allow you to show drop down(like MultiautocompleteTextView)
 
+Add ChipLayout to your project
+------------------------------
+[![](https://jitpack.io/v/AmaldevTA/ChipLayout.svg)](https://jitpack.io/#AmaldevTA/ChipLayout)
+
+### Gradle
+```
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+```
+	dependencies {
+	        implementation 'com.github.AmaldevTA:ChipLayout:1.1.0'
+	}
+```
+
+OR
+
+Module dependency - <br>Download folder 'AndroidChipLayout' and add as module dependency
+
 Example
 -------
 
@@ -112,14 +136,3 @@ Public Methods
             public void highlightChipAt(int pos, Drawable bgDrawable, int textColor)
             public void highlightChipAt(int pos, int bgColor, int textColor)
 ```
-            
-Dependencies
-------------
-### Gradle
-```
-compile 'com.libaml.android.view.chip:AndroidChipLayout:1.0.6'
-//For getting recent changes, import this as module dependency
-```
-OR
-
-Module dependency - <br>Download folder 'AndroidChipLayout' and add as module dependency
