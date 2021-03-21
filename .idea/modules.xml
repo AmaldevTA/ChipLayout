@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidChipLayout/AndroidChipLayout.iml" filepath="$PROJECT_DIR$/AndroidChipLayout/AndroidChipLayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ChipLayout.iml" filepath="$PROJECT_DIR$/ChipLayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ChipLayout.iml" filepath="$PROJECT_DIR$/.idea/ChipLayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidChipLayout/ChipLayout.AndroidChipLayout.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidChipLayout/ChipLayout.AndroidChipLayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChipLayout.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChipLayout.app.iml" />
     </modules>
   </component>
 </project>

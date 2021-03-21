@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "chip.android.lib.chiplayout"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
     }
@@ -24,10 +24,8 @@ apply plugin: 'maven'
 
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0'
-    compile project(':AndroidChipLayout')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation project(path: ':AndroidChipLayout')
 }
 
 

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         custom:textSize_="10dp"
+        custom:threshold_="1"
         custom:hint_="countries"
         custom:chipPadding_="4dp"
         custom:chipTextPadding_="2dp"

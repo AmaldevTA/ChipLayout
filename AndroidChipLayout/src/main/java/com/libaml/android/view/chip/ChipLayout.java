@@ -40,18 +40,19 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
 
     String autoCompleteTextViewTag = "chip_autoCompleteTextView", imageButtonTag = "chip_imageButton";
 
-    private float textSize, chipTextPadding, chipPadding, chipPaddingLeft, chipPaddingRight,
+    final private float textSize, chipTextPadding, chipPadding, chipPaddingLeft, chipPaddingRight,
             chipPaddingTop, chipPaddingBottom, chipTextPaddingLeft, chipTextPaddingRight,
             chipTextPaddingTop, chipTextPaddingBottom;
-    private ChipLayout chipLayout;
-    private Context context;
-    private boolean showDeleteButton;
-    private int labelPosition;
+    private final ChipLayout chipLayout;
+    private final Context context;
+    private final boolean showDeleteButton;
+    private final int labelPosition, threshold;
     private int textColor, chipColor, hintColor;
     private String hintText;
-    private Drawable deleteIcon, chipDrawable, chipLayoutDrawable;
+    private final Drawable deleteIcon, chipLayoutDrawable;
+    private Drawable chipDrawable;
     private Bitmap deleteIcon_ = null;
-    private List<TextWatcher>  listTextWatcher = new ArrayList<>();
+    private final List<TextWatcher>  listTextWatcher = new ArrayList<>();
     private ArrayAdapter adapter;
     private AdapterView.OnItemClickListener onItemClickListener;
     private OnClickListener onClickListener;
@@ -93,6 +94,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         chipPaddingRight = a_.getDimension(R.styleable.chip_layout_chipPaddingRight_, 0);
         chipPaddingTop = a_.getDimension(R.styleable.chip_layout_chipPaddingTop_, 0);
         chipPaddingBottom = a_.getDimension(R.styleable.chip_layout_chipPaddingBottom_, 0);
+        threshold = a_.getInt(R.styleable.chip_layout_threshold_, 2);
 
         if(deleteIcon != null) {
             deleteIcon_ = ((BitmapDrawable) deleteIcon).getBitmap();
@@ -472,6 +474,7 @@ public class ChipLayout extends ViewGroup implements View.OnClickListener {
         autoCompleteTextView.setTextColor(textColor);
         autoCompleteTextView.setHintTextColor(hintColor);
         autoCompleteTextView.setCursorVisible(true);
+        autoCompleteTextView.setThreshold(threshold);
 
         return autoCompleteTextView;
     }

@@ -1,10 +1,5 @@
 package chip.android.lib.chiplayout;
 
-import android.annotation.TargetApi;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,15 +7,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import com.libaml.android.view.chip.ChipLayout;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.libaml.android.view.chip.ChipLayout;
 
 
 public class MainActivity extends AppCompatActivity {
 
     ChipLayout chip;
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
